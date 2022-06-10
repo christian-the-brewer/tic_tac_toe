@@ -32,6 +32,15 @@ const resetButton = document.querySelector('#reset')
 //grabbing h2 to display turn and winner
 const h2 = document.querySelector('h2')
 
+//function for checking winstate
+
+//function for checking tied gamestate
+const tiedGame = () => {
+    //check for tied game by turns counter
+    if (turns > 10) {
+        h2.innerText = "Game Tied! Reset to play again!"
+    }
+}
 
 
 //function for clicking div
