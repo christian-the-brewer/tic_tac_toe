@@ -5,14 +5,14 @@ let playerTurn = true
 let turns = 0
 //keep track of win state
 //0 is no winner, 1 = player 1 wins, 2 = player 2 wins
-const win = 0
+const win = 1
 //define color for reset
 const unclaimedColor = `rgb(255, 0, 0)`
 //define player one blue
 const player1Color = `rgb(0, 0, 255)`
 //define player 2 color green
 const player2Color = `rgb(0, 255, 0)`
-const gameOverColor = `rgb(255,255,255)`
+const gameOverColor = `rgb(0,0,0)`
 
 //grabbing each cell
 const cell1 = document.querySelector('#a1')
@@ -24,6 +24,7 @@ const cell6 = document.querySelector('#b3')
 const cell7 = document.querySelector('#c1')
 const cell8 = document.querySelector('#c2')
 const cell9 = document.querySelector('#c3')
+const cellArray = [cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9]
 
 //grabbing each row
 const row1 = document.querySelector('#row1')
@@ -48,40 +49,39 @@ const h2 = document.querySelector('h2')
 // }
 //function to make cells black after someone wins
 const makeBlack = () => {
+    // console.log(cellArray)
+    // for (i = 1; i < 10; i++) {
+    //     if (cellAray[i].style.backgroundColor == unclaimedColor) {
+    //         cellArray[i].style.backgroundColor = gameOverColor
+    //     }
+    // }
+
     if (cell1.style.backgroundColor == unclaimedColor) {
         cell1.style.backgroundColor = gameOverColor
+    } if (cell2.style.backgroundColor == unclaimedColor) {
+        cell2.style.backgroundColor = gameOverColor
+    } if (cell3.style.backgroundColor == unclaimedColor) {
+        cell3.style.backgroundColor = gameOverColor
+    } if (cell4.style.backgroundColor == unclaimedColor) {
+        cell4.style.backgroundColor = gameOverColor
+    } if (cell5.style.backgroundColor == unclaimedColor) {
+        cell5.style.backgroundColor = gameOverColor
+    } if (cell6.style.backgroundColor == unclaimedColor) {
+        cell6.style.backgroundColor = gameOverColor
+    } if (cell7.style.backgroundColor == unclaimedColor) {
+        cell7.style.backgroundColor = gameOverColor
+    } if (cell8.style.backgroundColor == unclaimedColor) {
+        cell8.style.backgroundColor = gameOverColor
+    } if (cell9.style.backgroundColor == unclaimedColor) {
+        cell9.style.backgroundColor = gameOverColor
     }
-    if (cell2.style.backgroundColor == unclaimedColor) {
-        cell1.style.backgroundColor = gameOverColor
-    }
-    if (cell3.style.backgroundColor == unclaimedColor) {
-        cell1.style.backgroundColor = gameOverColor
-    }
-    if (cell4.style.backgroundColor == unclaimedColor) {
-        cell1.style.backgroundColor = gameOverColor
-    }
-    if (cell5.style.backgroundColor == unclaimedColor) {
-        cell1.style.backgroundColor = gameOverColor
-    }
-    if (cell6.style.backgroundColor == unclaimedColor) {
-        cell1.style.backgroundColor = gameOverColor
-    }
-    if (cell7.style.backgroundColor == unclaimedColor) {
-        cell1.style.backgroundColor = gameOverColor
-    }
-    if (cell8.style.backgroundColor == unclaimedColor) {
-        cell1.style.backgroundColor = gameOverColor
-    }
-    if (cell9.style.backgroundColor == unclaimedColor) {
-        cell1.style.backgroundColor = gameOverColor
-    }
-
-
 }
+
+
 
 //function for clicking div
 const markCell = () => { //maybe add parameter to pass in the current turn automatically
-    //everything is hidden in if statement if cell is red
+    //everything is in if statement if cell is red
     if (event.target.style.backgroundColor == unclaimedColor) {
         //change color of cell
         if (playerTurn === true) {
@@ -112,8 +112,8 @@ const markCell = () => { //maybe add parameter to pass in the current turn autom
             makeBlack()
         }
         //check for tied gamestate
-        if (turns === 9) {
-            const tiedText = document.querySelector('h2').innerText = "Game Tied! Reset to play again!"
+        if (turns === 9 && win === 0) {
+            h2.innerText = "Game Tied! Reset to play again!"
 
         } console.log(turns)
         console.log(playerTurn)
@@ -121,6 +121,10 @@ const markCell = () => { //maybe add parameter to pass in the current turn autom
 }
 
 //give each cell a click event listener
+// for (i = 1; i < 10; i++) {
+//     cellArray[i].addEventListener('click', markCell)
+// }
+
 cell1.addEventListener('click', markCell)
 cell2.addEventListener('click', markCell)
 cell3.addEventListener('click', markCell)
@@ -135,6 +139,9 @@ cell9.addEventListener('click', markCell)
 //also needs to reset turns = 0
 const resetBoard = () => {
     //reset color of gameboard
+    // for (i = 1; i < 10; i++) {
+    //     cellArray[i].style.backgroundColor = unclaimedColor
+    // }
     cell1.style.backgroundColor = unclaimedColor
     cell2.style.backgroundColor = unclaimedColor
     cell3.style.backgroundColor = unclaimedColor
