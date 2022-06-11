@@ -3,12 +3,16 @@
 let playerTurn = true
 //keep track of turns to end game in tie
 let turns = 0
+//keep track of win state
+//0 is no winner, 1 = player 1 wins, 2 = player 2 wins
+const win = 0
 //define color for reset
 const unclaimedColor = `rgb(255, 0, 0)`
 //define player one blue
 const player1Color = `rgb(0, 0, 255)`
 //define player 2 color green
 const player2Color = `rgb(0, 255, 0)`
+const gameOverColor = `rgb(255,255,255)`
 
 //grabbing each cell
 const cell1 = document.querySelector('#a1')
@@ -34,14 +38,46 @@ const h2 = document.querySelector('h2')
 
 //function for checking winstate
 
-//function for checking tied gamestate
-const tiedGame = () => {
-    //check for tied game by turns counter
-    if (turns > 10) {
-        h2.innerText = "Game Tied! Reset to play again!"
+// //function for checking tied gamestate
+// const tiedGame = () => {
+//     //check for tied game by turns counter
+//     if (turns > 9) {
+//         h2.innerText = "Game Tied! Reset to play again!"
+//     }
+//
+// }
+//function to make cells black after someone wins
+const makeBlack = () => {
+    if (cell1.style.backgroundColor == unclaimedColor) {
+        cell1.style.backgroundColor = gameOverColor
     }
-}
+    if (cell2.style.backgroundColor == unclaimedColor) {
+        cell1.style.backgroundColor = gameOverColor
+    }
+    if (cell3.style.backgroundColor == unclaimedColor) {
+        cell1.style.backgroundColor = gameOverColor
+    }
+    if (cell4.style.backgroundColor == unclaimedColor) {
+        cell1.style.backgroundColor = gameOverColor
+    }
+    if (cell5.style.backgroundColor == unclaimedColor) {
+        cell1.style.backgroundColor = gameOverColor
+    }
+    if (cell6.style.backgroundColor == unclaimedColor) {
+        cell1.style.backgroundColor = gameOverColor
+    }
+    if (cell7.style.backgroundColor == unclaimedColor) {
+        cell1.style.backgroundColor = gameOverColor
+    }
+    if (cell8.style.backgroundColor == unclaimedColor) {
+        cell1.style.backgroundColor = gameOverColor
+    }
+    if (cell9.style.backgroundColor == unclaimedColor) {
+        cell1.style.backgroundColor = gameOverColor
+    }
 
+
+}
 
 //function for clicking div
 const markCell = () => { //maybe add parameter to pass in the current turn automatically
@@ -58,6 +94,29 @@ const markCell = () => { //maybe add parameter to pass in the current turn autom
         playerTurn = !playerTurn
         //increase turn counter
         turns = turns + 1
+        //change player turn in h2
+        if (playerTurn === true) {
+            document.querySelector('h2').innerText = "Your turn Player 1"
+        } else {
+            document.querySelector('h2').innerText = "Your turn Player 2"
+        }
+        //check for win state
+        if (win === 1) {
+            document.querySelector('h2').innerText = "Player 1 Wins!"
+            //change unclaimed cells to black
+            makeBlack()
+        }
+        if (win === 2) {
+            document.querySelector('h2').innerText = "Player 2 Wins!"
+            //change unclaimed cells to black
+            makeBlack()
+        }
+        //check for tied gamestate
+        if (turns === 9) {
+            const tiedText = document.querySelector('h2').innerText = "Game Tied! Reset to play again!"
+
+        } console.log(turns)
+        console.log(playerTurn)
     }
 }
 
@@ -103,3 +162,5 @@ resetButton.addEventListener('click', resetBoard)
 //create the gameboard on load or reset
 document.addEventListener('DOMContentLoaded', resetBoard)
 
+console.log(turns)
+console.log(playerTurn)
