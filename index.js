@@ -5,7 +5,7 @@ let playerTurn = true
 let turns = 0
 //keep track of win state
 //0 is no winner, 1 = player 1 wins, 2 = player 2 wins
-const win = 1
+let win = 0
 //define color for reset
 const unclaimedColor = `rgb(255, 0, 0)`
 //define player one blue
@@ -24,6 +24,7 @@ const cell6 = document.querySelector('#b3')
 const cell7 = document.querySelector('#c1')
 const cell8 = document.querySelector('#c2')
 const cell9 = document.querySelector('#c3')
+//use array for looping to cut down on lines of code
 const cellArray = [cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9]
 
 //grabbing each row
@@ -38,6 +39,43 @@ const resetButton = document.querySelector('#reset')
 const h2 = document.querySelector('h2')
 
 //function for checking winstate
+//function could return a value of either 0,1, or 2.
+const gameWon = () => {
+
+    if (((cell1.style.backgroundColor == cell2.style.backgroundColor) && (cell2.style.backgroundColor == cell3.style.backgroundColor) && (cell1.style.backgroundColor == player1Color))) {
+        return 1
+    } else if (((cell1.style.backgroundColor == cell2.style.backgroundColor) && (cell2.style.backgroundColor == cell3.style.backgroundColor) && (cell1.style.backgroundColor == player2Color))) {
+        return 2
+    } else if (((cell4.style.backgroundColor == cell5.style.backgroundColor) && (cell5.style.backgroundColor == cell6.style.backgroundColor) && (cell4.style.backgroundColor == player1Color))) {
+        return 1
+    } else if (((cell4.style.backgroundColor == cell5.style.backgroundColor) && (cell5.style.backgroundColor == cell6.style.backgroundColor) && (cell4.style.backgroundColor == player2Color))) {
+        return 2
+    } else if (((cell7.style.backgroundColor == cell8.style.backgroundColor) && (cell8.style.backgroundColor == cell9.style.backgroundColor) && (cell7.style.backgroundColor == player1Color))) {
+        return 1
+    } else if (((cell7.style.backgroundColor == cell8.style.backgroundColor) && (cell8.style.backgroundColor == cell9.style.backgroundColor) && (cell7.style.backgroundColor == player2Color))) {
+        return 2
+    } else if (((cell1.style.backgroundColor == cell4.style.backgroundColor) && (cell4.style.backgroundColor == cell7.style.backgroundColor) && (cell1.style.backgroundColor == player1Color))) {
+        return 1
+    } else if (((cell1.style.backgroundColor == cell4.style.backgroundColor) && (cell4.style.backgroundColor == cell7.style.backgroundColor) && (cell1.style.backgroundColor == player2Color))) {
+        return 2
+    } else if (((cell2.style.backgroundColor == cell5.style.backgroundColor) && (cell5.style.backgroundColor == cell8.style.backgroundColor) && (cell2.style.backgroundColor == player1Color))) {
+        return 1
+    } else if (((cell2.style.backgroundColor == cell5.style.backgroundColor) && (cell5.style.backgroundColor == cell8.style.backgroundColor) && (cell2.style.backgroundColor == player2Color))) {
+        return 2
+    } else if (((cell3.style.backgroundColor == cell6.style.backgroundColor) && (cell6.style.backgroundColor == cell9.style.backgroundColor) && (cell3.style.backgroundColor == player1Color))) {
+        return 1
+    } else if (((cell3.style.backgroundColor == cell6.style.backgroundColor) && (cell6.style.backgroundColor == cell9.style.backgroundColor) && (cell3.style.backgroundColor == player2Color))) {
+        return 2
+    } else if (((cell1.style.backgroundColor == cell5.style.backgroundColor) && (cell5.style.backgroundColor == cell9.style.backgroundColor) && (cell1.style.backgroundColor == player1Color))) {
+        return 1
+    } else if (((cell1.style.backgroundColor == cell5.style.backgroundColor) && (cell5.style.backgroundColor == cell9.style.backgroundColor) && (cell1.style.backgroundColor == player2Color))) {
+        return 2
+    } else if (((cell3.style.backgroundColor == cell5.style.backgroundColor) && (cell5.style.backgroundColor == cell7.style.backgroundColor) && (cell3.style.backgroundColor == player1Color))) {
+        return 1
+    } else if (((cell3.style.backgroundColor == cell5.style.backgroundColor) && (cell5.style.backgroundColor == cell7.style.backgroundColor) && (cell3.style.backgroundColor == player2Color))) {
+        return 2
+    }
+}
 
 // //function for checking tied gamestate
 // const tiedGame = () => {
@@ -101,6 +139,10 @@ const markCell = () => { //maybe add parameter to pass in the current turn autom
             document.querySelector('h2').innerText = "Your turn Player 2"
         }
         //check for win state
+        win = gameWon()
+        console.log(win)
+        console.log(gameWon())
+
         if (win === 1) {
             document.querySelector('h2').innerText = "Player 1 Wins!"
             //change unclaimed cells to black
