@@ -6,3 +6,30 @@
     margin: 5px;
 
 }
+
+#reset {
+    color: ;
+    background-color: red;
+}
+
+h1 {
+    font-size: 60px;
+    text-align: center;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.blue {
+    color: blue;
+}
+
+p {
+    text-align: center;
+    font-size: 30px;
+}
