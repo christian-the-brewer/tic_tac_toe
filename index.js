@@ -13,6 +13,9 @@ const player1Color = `rgb(0, 0, 255)`
 //define player 2 color green
 const player2Color = `rgb(0, 255, 0)`
 const gameOverColor = `rgb(0,0,0)`
+//define win counter for each player
+let player1Wins = 0
+let player2Wins = 0
 
 //grabbing each cell
 const cell1 = document.querySelector('#a1')
@@ -37,6 +40,11 @@ const resetButton = document.querySelector('#reset')
 
 //grabbing h2 to display turn and winner
 const h2 = document.querySelector('h2')
+
+//grab h3 to show wins
+const h3 = document.querySelector('h3')
+
+h3.innerHTML = "Player 1: " + player1Wins + " | Player 2: " + player2Wins
 
 //function for checking winstate
 //function could return a value of either 0,1, or 2.
@@ -147,11 +155,18 @@ const markCell = () => { //maybe add parameter to pass in the current turn autom
             document.querySelector('h2').innerText = "Player 1 Wins!"
             //change unclaimed cells to black
             makeBlack()
+            //tick up score counter
+            player1Wins = player1Wins + 1
+            h3.innerHTML = "Player 1: " + player1Wins + " | Player 2: " + player2Wins
+
         }
         if (win === 2) {
             document.querySelector('h2').innerText = "Player 2 Wins!"
             //change unclaimed cells to black
             makeBlack()
+            //tick up score counter
+            player2Wins = player2Wins + 1
+            h3.innerHTML = "Player 1: " + player1Wins + " | Player 2: " + player2Wins
         }
         //check for tied gamestate
         if (turns === 9 && win === 0) {
