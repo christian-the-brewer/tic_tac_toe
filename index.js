@@ -17,6 +17,7 @@ const gameOverColor = `rgb(0,0,0)`
 let player1Wins = 0
 let player2Wins = 0
 
+
 //grabbing each cell
 const cell1 = document.querySelector('#a1')
 const cell2 = document.querySelector('#a2')
@@ -148,7 +149,7 @@ const markCell = () => { //maybe add parameter to pass in the current turn autom
         }
         //check for win state
         win = gameWon()
-        console.log(win)
+        //console.log(win)
         console.log(gameWon())
 
         if (win === 1) {
@@ -159,6 +160,8 @@ const markCell = () => { //maybe add parameter to pass in the current turn autom
             player1Wins = player1Wins + 1
             h3.innerHTML = "Player 1: " + player1Wins + " | Player 2: " + player2Wins
 
+        } else if (turns === 9) {
+            h2.innerText = "Game Tied! Reset to play again!"
         }
         if (win === 2) {
             document.querySelector('h2').innerText = "Player 2 Wins!"
@@ -167,15 +170,26 @@ const markCell = () => { //maybe add parameter to pass in the current turn autom
             //tick up score counter
             player2Wins = player2Wins + 1
             h3.innerHTML = "Player 1: " + player1Wins + " | Player 2: " + player2Wins
+        } else if (turns === 9) {
+            h2.innerText = "Game Tied! Reset to play again!"
         }
         //check for tied gamestate
-        if (turns === 9 && win === 0) {
-            h2.innerText = "Game Tied! Reset to play again!"
+        // if ((turns === 9) && (win === 0)) {
+        //     h2.innerText = "Game Tied! Reset to play again!"
 
-        } console.log(turns)
+        // } console.log(turns)
+        // if (turns === 9) {
+        //     if (win === 0) {
+        //         h2.innerText = "Game Tied! Reset to play again!"
+        //     }
+        // }
         console.log(playerTurn)
+        console.log(win)
+        console.log(turns)
+
     }
 }
+
 
 //give each cell a click event listener
 // for (i = 1; i < 10; i++) {
